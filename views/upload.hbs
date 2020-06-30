@@ -3,8 +3,38 @@
 
     <div class="row">
 
-      <div class="col s6">
+      <div class="left-column col s6">
         <p>Click here to upload image</p>
+        <div class="canvas-wrapper">
+            <script>
+                let input;
+                let img;
+
+                function setup() {
+                input = createFileInput(handleFile)
+                input.parent(document.querySelector('.canvas-wrapper'))
+                cnv = createCanvas(250, 250)
+                cnv.parent(document.querySelector('.canvas-wrapper'))
+                }
+
+                function draw() {
+                background(50);
+                if (img) {
+                    image(img, 0, 0, width, height)
+                }
+                }
+
+                function handleFile(file) {
+                print(file);
+                if (file.type === 'image') {
+                    img = createImg(file.data, '')
+                    img.hide()
+                } else {
+                    img = null
+                }
+            }
+        </script>
+        </div>   
       </div>
       <div class="col s6">
         <p>Top text</p>
