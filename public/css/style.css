@@ -7,3 +7,7 @@ p {
     margin-top: 50px;
     text-align: center;
 }
+
+i.fab.fa-google.left {
+    line-height: 36px;
+}
