@@ -3,46 +3,84 @@
 
     <div class="row">
 
-      <div class="left-column col s6">
-        <p>Click here to upload image</p>
-        <div class="canvas-wrapper">
-            <script>
-                let input;
-                let img;
-
-                function setup() {
-                input = createFileInput(handleFile)
-                input.parent(document.querySelector('.canvas-wrapper'))
-                cnv = createCanvas(250, 250)
-                cnv.parent(document.querySelector('.canvas-wrapper'))
-                }
-
-                function draw() {
-                background(50);
-                if (img) {
-                    image(img, 0, 0, width, height)
-                }
-                }
-
-                function handleFile(file) {
-                print(file);
-                if (file.type === 'image') {
-                    img = createImg(file.data, '')
-                    img.hide()
-                } else {
-                    img = null
-                }
-            }
-        </script>
-        </div>   
+      <div class="col s6">
+        <h4>Click here to upload image</h4>
+        <div class="canvas-wrapper"></div>   
       </div>
       <div class="col s6">
-        <p>Top text</p>
-        <p>Bottom text</p>
-        <p>Select text color</p>
-        <p>Select text size</p>
+        <h5 class="top-text">Top Text</h5>
+        <h5 class="bottom-text">Bottom Text</h5>
+        <h5>Select text color</h5>
+            <div class="color-picker"></div>
+        <h5 class="slider">Select text size</h5>
+        <a class="waves-effect waves-light btn black save-btn"><i class="material-icons right">file_download</i>Save Meme</a>      
       </div>
 
     </div>
           
 </div>
+
+ <script>
+    let imgInput
+    let img
+    let cnv
+    let topTxtInput
+    let bottomTxtInput
+    let slider
+    let color
+
+    function setup() {
+        imgInput = createFileInput(handleFile)
+        imgInput.parent(document.querySelector('.canvas-wrapper'))
+
+        cnv = createCanvas(300, 300)
+        cnv.parent(document.querySelector('.canvas-wrapper'))
+
+        topTxtInput = createInput('').attribute('placeholder', 'Top Text')
+        topTxtInput.parent(document.querySelector('.top-text'))
+
+        bottomTxtInput = createInput('').attribute('placeholder', 'Bottom Text')
+        bottomTxtInput.parent(document.querySelector('.bottom-text'))
+        
+        slider = createSlider(0, 50, 20)
+        slider.parent(document.querySelector('.slider'))
+
+        color = createColorPicker('white')
+        color.parent(document.querySelector('.color-picker'))
+
+        document.querySelector('.save-btn').addEventListener('click', (e) => {
+            e.preventDefault()
+            saveCanvas(cnv, 'myCanvas', 'jpg')
+        })
+    }
+
+    function draw() {
+        background(50);
+        if (img) {
+            image(img, 0, 0, width, height)
+        }
+
+        let valSlider = slider.value()
+        let valColor = color.value()
+
+        fill(valColor)
+        textSize(valSlider)
+        textAlign(CENTER, CENTER);
+        text(topTxtInput.value(), width/2, height * 0.10)
+
+        fill(valColor)
+        textSize(valSlider)
+        textAlign(CENTER, CENTER);
+        text(bottomTxtInput.value(), width/2, height * 0.90)
+    }
+
+    function handleFile(file) {
+        print(file)
+        if (file.type === 'image') {
+            img = createImg(file.data, '')
+            img.hide()
+        } else {
+            img = null
+        }
+    }
+</script>

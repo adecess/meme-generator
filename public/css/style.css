@@ -15,3 +15,12 @@ i.fab.fa-google.left {
 img {
     height: 35vw;
 }
+
+input {
+    text-align: center;
+    color: lightgray;
+}
+
+.slider {
+    height: 100%;
+}
