@@ -24,3 +24,10 @@ input {
 .slider {
     height: 100%;
 }
+
+.page-footer {
+    padding-top: 0;
+    color: #fff;
+    background-color: #ee6e73;
+    margin-top: 75px;
+}
