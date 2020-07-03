@@ -31,3 +31,7 @@ input {
     background-color: #ee6e73;
     margin-top: 75px;
 }
+
+.dashboard {
+    min-height: 490px;;
+}
