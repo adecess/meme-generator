@@ -1,4 +1,11 @@
 <div class="dashboard center">
     <h3>Welcome {{name}}</h3>
     <p>Here are the sexy memes you made</p>
+
+    <br>
+    
+    <form action="/dashboard/upload" method="post" enctype="multipart/form-data">
+        <h5>Add a meme to your portfolio</h5>
+        <input type="file" name="meme" />
+    </form>
 </div>

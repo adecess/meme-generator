@@ -29,32 +29,6 @@ function setup() {
         e.preventDefault()
         saveCanvas(cnv, 'myCanvas', 'jpg')
     })
-
-    document.querySelector('.save-portfolio-btn').addEventListener('click', (e) => {
-        e.preventDefault()
-
-        let serverUrl = '/upload/meme'; //we've made a POST endpoint on the server at /upload/meme
-        let formdata = new FormData() ; //create a from to of data to upload to the server
-        formdata.append('meme', cnv.canvas.toBlob(), 'bigMeme.png') ; 
-        //build a HTTP POST request
-        let httpRequestOptions = {
-            method: 'POST',
-            body: formdata, // with our form data packaged above
-            headers: new Headers({
-            'enctype': 'multipart/form-data' // the enctype is important to work with multer on the server
-            })
-        };
-        // console.log(httpRequestOptions);
-        // use p5 to make the POST request at our URL and with our options
-        httpDo(
-            serverUrl,
-            httpRequestOptions,
-            (successStatusCode)=>{ //if we were successful...
-            console.log("uploaded recording successfully: " + successStatusCode)
-            },
-            (error) => {console.error(error);}
-        )
-    })
 }
 
 function draw() {

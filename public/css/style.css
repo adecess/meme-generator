@@ -1,3 +1,7 @@
+body {
+    min-height: 708.2px;
+}
+
 p {
     margin: 10px 0 !important;
 }
@@ -32,6 +36,6 @@ input {
     margin-top: 75px;
 }
 
-.dashboard {
+.upload, .dashboard {
     min-height: 490px;;
 }

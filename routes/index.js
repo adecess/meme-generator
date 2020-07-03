@@ -18,4 +18,10 @@ router.get('/dashboard', ensureAuth, (req, res) => {
     })
 })
 
+// @ desc Dashboard meme upload
+// @route POST /dashboard/upload
+router.get('/dashboard/upload', ensureAuth, (req, res) => {
+    
+})
+
 module.exports = router
