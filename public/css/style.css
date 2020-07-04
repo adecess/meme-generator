@@ -39,3 +39,29 @@ input {
 .upload, .dashboard {
     min-height: 490px;;
 }
+
+.img-area {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.single-img {
+    padding: 0 20px 20px;
+}
+
+.single-img img {
+    height: auto;
+    max-width: 300px;
+}
+
+img:hover {
+    opacity: .5;
+    transition: .9s;
+}   
+
+.meme-name {
+    max-width: 200px;
+}
