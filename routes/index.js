@@ -55,4 +55,8 @@ router.post('/dashboard/upload', ensureAuth, upload.single('meme'), async(req, r
       }
 })
 
+// @ desc Dashboard meme delete
+// @route POST /dashboard/delete
+// tbd
+
 module.exports = router
