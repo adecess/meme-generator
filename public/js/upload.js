@@ -1,5 +1,7 @@
 let imgInput
     let img
+    let imgW;
+    let imgH;
     let cnv
     let topTxtInput
     let bottomTxtInput
@@ -34,7 +36,7 @@ function setup() {
 function draw() {
     background('rgb(247, 234, 196)');
     if (img) {
-        image(img, 0, 0, width, height)
+        imgUpdate();
     }
 
     let valSlider = slider.value()
@@ -54,9 +56,18 @@ function draw() {
 function handleFile(file) {
     print(file)
     if (file.type === 'image') {
-        img = createImg(file.data, '')
-        img.hide()
+        img = loadImage(file.data, 
+            function(){
+              imgUpdate();
+              resizeCanvas(imgW, imgH);
+            });
     } else {
         img = null
     }
+}
+
+function imgUpdate() {
+    image(img, 0, 0, width, height);
+    imgW = img.width;
+    imgH = img.height;
 }
