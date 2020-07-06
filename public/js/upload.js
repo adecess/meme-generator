@@ -12,7 +12,7 @@ function setup() {
     imgInput = createFileInput(handleFile)
     imgInput.parent(document.querySelector('.canvas-wrapper'))
 
-    cnv = createCanvas(300, 300)
+    cnv = createCanvas(250, 250)
     cnv.parent(document.querySelector('.canvas-wrapper'))
 
     topTxtInput = createInput('').attribute('placeholder', 'Top Text')

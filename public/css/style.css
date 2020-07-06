@@ -1,5 +1,9 @@
 body {
-    min-height: 708.2px;
+    min-height: 100vh;
+}
+
+.container {
+    min-height: calc(100vh - 64px - 50px);
 }
 
 p {
@@ -27,13 +31,6 @@ input {
 
 .slider {
     height: 100%;
-}
-
-.page-footer {
-    padding-top: 0;
-    color: #fff;
-    background-color: #ee6e73;
-    margin-top: 80px;
 }
 
 .upload, .dashboard {
@@ -67,6 +64,17 @@ img:hover {
 }
 
 #defaultCanvas0 {
-    max-width: 350px;
+    max-width: 300px;
     height: auto !important;
+}
+
+footer {
+    margin-top: 20px;
+    position: absolute;
+    width: 100%;
+}
+
+.footer-copyright {
+    min-height: 50px;
+    line-height: 50px;
 }
