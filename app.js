@@ -30,7 +30,6 @@ if (process.env.NODE_ENV === 'development') {
 
 // Handlebars
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: 'hbs'}))
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs')
 
 // Sessions
@@ -54,7 +53,7 @@ app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/upload', require('./routes/upload'))
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 app.listen(
     port, 
