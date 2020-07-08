@@ -1,5 +1,5 @@
 {
-  "name": "meme-generator",
+  "name": "memez-generator",
   "version": "1.0.0",
   "description": "App to create and share memes",
   "main": "app.js",
