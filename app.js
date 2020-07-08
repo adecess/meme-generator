@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Handlebars
-app.engine('.hbs', exphbs({defaultLayout: 'main', extname: 'hbs'}))
+app.engine('.hbs', exphbs({defaultLayout: 'login', extname: 'hbs'}))
 app.set('view engine', '.hbs')
 
 // Sessions
