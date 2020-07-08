@@ -9,7 +9,7 @@ const Meme = require('../models/Meme')
 // @desc Login/Landing page
 // @route GET /
 router.get('/', ensureGuest, (req, res) => {
-    res.render('Login', {
+    res.render('login', {
         layout: 'login'
     })
 })
