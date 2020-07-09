@@ -29,9 +29,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Handlebars
-app.engine('.hbs', exphbs({defaultLayout: 'main', layoutsDir: __dirname + "/views/layouts/", extname: 'hbs'}))
+app.engine('.hbs', exphbs({defaultLayout: 'main', extname: 'hbs'}))
 app.set('view engine', '.hbs')
-app.set('views', __dirname + '/views');
 
 // Sessions
 app.use(session({
@@ -54,9 +53,9 @@ app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/upload', require('./routes/upload'))
 
-const port = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 
 app.listen(
-    port, 
-    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`)
+    PORT, 
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 )

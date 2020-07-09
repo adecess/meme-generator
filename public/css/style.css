@@ -1,23 +1,17 @@
-body {
-    min-height: 100vh;
-}
-
-.container {
-    min-height: calc(100vh - 64px - 50px);
-}
-
-p {
-    margin: 10px 0 !important;
-}
-
-.login-container {
-    width: 400px;
-    margin-top: 50px;
-    text-align: center;
-}
+/* Header */
 
 i.fab.fa-google.left {
     line-height: 36px;
+}
+
+.upload, .dashboard {
+    min-height: 490px;;
+}
+
+/* Dashboard */
+
+p {
+    margin: 10px 0 !important;
 }
 
 img {
@@ -27,14 +21,6 @@ img {
 input {
     text-align: center;
     color: lightgray;
-}
-
-.slider {
-    height: 100%;
-}
-
-.upload, .dashboard {
-    min-height: 490px;;
 }
 
 .img-area {
@@ -59,22 +45,22 @@ img:hover {
     transition: .9s;
 }   
 
-.meme-name {
-    max-width: 200px;
+/* Upload page */
+
+.canvas-wrapper {
+    margin-top: 25px;
 }
 
 #defaultCanvas0 {
     max-width: 300px;
     height: auto !important;
+    margin-top: 15px;
 }
 
-footer {
-    margin-top: 20px;
-    position: absolute;
-    width: 100%;
+.slider {
+    height: 100%;
 }
 
-.footer-copyright {
-    min-height: 50px;
-    line-height: 50px;
+.submit-btn {
+    margin-bottom: 20px;
 }
