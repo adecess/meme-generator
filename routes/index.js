@@ -29,15 +29,17 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
     }
   })
 
+// Set Storage Engine
+const storage = multer.diskStorage({
+  destination: 'public/img',
+  filename: function (req, file, cb) {
+      cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname)) //Appending extension
+  }
+})
+
 // multer static upload file
 const upload = multer({
-    dest: 'public/img',
-    limits: {
-        fileSize: 1000000
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
-    }
+  storage: storage
 })
 
 // @ desc Dashboard meme upload
