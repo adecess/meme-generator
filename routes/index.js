@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
+const aws = require("aws-sdk")
 const multer = require('multer')
+const multerS3 = require("multer-s3")
 const path = require('path')
 
 const Meme = require('../models/Meme')
@@ -27,19 +29,40 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
       console.error(err)
       res.render('error/500')
     }
-  })
-
-// Set Storage Engine
-const storage = multer.diskStorage({
-  destination: 'public/img',
-  filename: function (req, file, cb) {
-      cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname)) //Appending extension
-  }
 })
+
+// Initialize S3 connection and config
+const s3 = new aws.S3()
+aws.config.update({
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  region: "eu-west-3"
+});
+
+// File type validation
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb(new Error("Invalid file type, only JPEG and PNG is allowed!"), false);
+  }
+}
 
 // multer static upload file
 const upload = multer({
-  storage: storage
+  fileFilter,
+  limits: { fileSize: 1000000 },
+  storage: multerS3({
+    acl: "public-read",
+    s3,
+    bucket: process.env.S3_BUCKET_NAME,
+    metadata: function (req, file, cb) {
+      cb(null, { fieldName: "TESTING_METADATA" });
+    },
+    key: function (req, file, cb) {
+      cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+    },
+  }),
 })
 
 // @ desc Dashboard meme upload
@@ -47,7 +70,7 @@ const upload = multer({
 router.post('/dashboard/upload', ensureAuth, upload.single('meme'), async(req, res) => {
     try {
         await Meme.create({
-            image: '/img/' + req.file.filename,
+            image: req.file.location,
             owner: req.user._id
         })
         res.redirect('/dashboard')

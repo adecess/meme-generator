@@ -8,6 +8,7 @@ const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const connectDB = require('./config/db')
+const cors = require("cors");
 
 // Load config
 dotenv.config({ path: './config/config.env' })
@@ -18,6 +19,9 @@ require('./config/passport')(passport)
 connectDB()
 
 const app = express()
+
+// CORS
+app.use(cors());
 
 // Body parser
 app.use(express.urlencoded({ extended: false }))
