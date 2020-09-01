@@ -1,20 +1,22 @@
-<div class="dashboard center">
-    <h3>Welcome {{name}}</h3>
-    <p>Here are the sexy memes you made</p>
+<div class="container">
+    <div class="dashboard center">
+        <h3>Welcome {{name}}</h3>
+        <p>Here are the sexy memes you made</p>
 
-    <div class="img-area">
-        {{#if memes}}
-            {{#each memes}}
-            <div class="single-img"><img src="{{image}}"></div>
-            {{/each}}
-        {{else}}
-        <p>You have not uploaded any meme</p>
-        {{/if}}
+        <div class="img-area">
+            {{#if memes}}
+                {{#each memes}}
+                <div class="single-img"><img src="{{image}}"></div>
+                {{/each}}
+            {{else}}
+            <p>You have not uploaded any meme</p>
+            {{/if}}
+        </div>
+
+        <form action="/dashboard/upload" method="post" enctype="multipart/form-data">
+            <h5>Add a meme to your portfolio (1MB limit)</h5>
+            <input type="file" name="meme" />
+            <input class="submit-btn" type="submit" value="Upload meme">
+        </form>
     </div>
-
-    <form action="/dashboard/upload" method="post" enctype="multipart/form-data">
-        <h5>Add a meme to your portfolio (1MB limit)</h5>
-        <input type="file" name="meme" />
-        <input class="submit-btn" type="submit" value="Upload meme">
-    </form>
 </div>
