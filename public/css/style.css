@@ -22,9 +22,31 @@ nav .sidenav-trigger {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 8px 10px !important;
+    margin: 12px 10px;
     height: 40px !important;
 }
+
+@media only screen and (max-width: 600px) {
+    nav .sidenav-trigger {
+        margin: 8px 10px !important;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .btn-dashboard {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) !important;
+        margin: 14px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .btn-dashboard {
+        margin: 10px;
+    }
+}
+
 
 /* Dashboard */
 
