@@ -26,12 +26,6 @@ nav .sidenav-trigger {
     height: 40px !important;
 }
 
-@media only screen and (max-width: 600px) {
-    nav .sidenav-trigger {
-        margin: 8px 10px !important;
-    }
-}
-
 @media only screen and (max-width: 1000px) {
     .btn-dashboard {
         position: absolute;
@@ -42,6 +36,10 @@ nav .sidenav-trigger {
 }
 
 @media only screen and (max-width: 600px) {
+    nav .sidenav-trigger {
+        margin: 8px 10px !important;
+    }
+
     .btn-dashboard {
         margin: 10px;
     }
@@ -77,6 +75,18 @@ nav .sidenav-trigger {
     max-height: 300px;
     width: auto;
     height: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .btn-create {
+        line-height: 100%;
+        max-width: 300px;
+    }
+
+    .login-img {
+        max-width: 300px;
+    }
 }
 
 /* Dashboard */
