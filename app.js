@@ -8,7 +8,8 @@ const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const connectDB = require('./config/db')
-const cors = require("cors");
+const cors = require("cors")
+const methodOverride = require('method-override')
 
 // Load config
 dotenv.config({ path: './config/config.env' })
@@ -21,7 +22,10 @@ connectDB()
 const app = express()
 
 // CORS
-app.use(cors());
+app.use(cors())
+
+// Method Override
+app.use(methodOverride('_method'))
 
 // Body parser
 app.use(express.urlencoded({ extended: false }))

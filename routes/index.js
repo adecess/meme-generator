@@ -82,6 +82,34 @@ router.post('/dashboard/upload', ensureAuth, upload.single('meme'), async(req, r
 
 // @ desc Dashboard meme delete
 // @route POST /dashboard/delete
-// tbd
+router.delete('/memes/:id', ensureAuth, async (req, res) => {
+  try {
+    const meme = await Meme.findById(req.params.id)
+    if (!meme) {
+      res.status(404).send
+    }
+    
+    const params = await {
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: meme.image.match(/meme-\d+\.(jpg|png)/)[0]
+    }
+    await s3.headObject(params).promise()
+    console.log("File Found in S3")
+    try {
+      await s3.deleteObject(params).promise()
+      console.log("file deleted Successfully")
+    }
+    catch (err) {
+        console.log("ERROR in file Deleting : " + JSON.stringify(err))
+    }
+
+    await meme.remove()
+
+    res.redirect('/dashboard')
+  } catch (err) {
+    console.error(err)
+    res.render('error/500')
+  }
+})
 
 module.exports = router

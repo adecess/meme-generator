@@ -6,17 +6,23 @@
         <div class="img-area">
             {{#if memes}}
                 {{#each memes}}
-                <div class="single-img"><img src="{{image}}"></div>
+                    <div class="single-img">
+                        <img src="{{image}}">
+                        <form method="POST" action="/memes/{{_id}}?_method=DELETE">
+                            <button class="btn-flat red btn-delete" type="submit">Delete</button>
+                        </form>
+                        {{!-- <a href="/memes/{{_id}}"><i class="close material-icons right">close</i></a> --}}
+                    </div>
                 {{/each}}
             {{else}}
-            <p>You have not uploaded any meme</p>
+                <p>You have not uploaded any meme</p>
             {{/if}}
         </div>
 
-        <form action="/dashboard/upload" method="post" enctype="multipart/form-data">
+        <form action="/dashboard/upload" method="post" enctype="multipart/form-data" class="form-upload">
             <h5>Add a meme to your portfolio (1MB limit)</h5>
-            <input type="file" name="meme" />
-            <input class="submit-btn" type="submit" value="Upload meme">
+            <input class="btn-browse" type="file" name="meme" />
+            <input class="btn-submit btn-flat blue" type="submit" value="Upload meme">
         </form>
     </div>
 </div>
